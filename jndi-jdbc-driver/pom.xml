@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>fr.unistra.di</groupId>
+  <artifactId>jndi-jdbc-driver</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>JDBC Driver delegating to JNDI DataSource</name>
+  <inceptionYear>2014</inceptionYear>
+
+  <organization>
+    <name>Université de Strasbourg</name>
+    <url>http://www.unistra.fr</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <id>decornod</id>
+      <name>Léa Рая DÉCONOD</name>
+      <email>decornod@unistra.fr</email>
+      <organization>Direction Informatique de l'Université de Strasbourg</organization>
+      <organizationUrl>http://di.unistra.fr</organizationUrl>
+    </developer>
+  </developers>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spring-framework.version>3.1.4.RELEASE</spring-framework.version>
+  </properties>
+
+  <dependencies>
+    <!--
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>3.1.4.RELEASE</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-dbcp</artifactId>
+      <version>7.0.52</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-jdbc</artifactId>
+      <version>7.0.52</version>
+      <scope>provided</scope>
+    </dependency>
+    -->
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>2.2.9</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <!-- http://maven.apache.org/plugins/maven-compiler-plugin/ -->
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
+          <properties>
+            <owner>Université de Strasbourg</owner>
+            <email>di-dip@unistra.fr</email>
+          </properties>
+          <aggregate>true</aggregate>
+          <strictCheck>true</strictCheck>
+          <excludes>
+              <exclude>src/test/resources/**/*</exclude>
+              <exclude>NOTICE</exclude>
+              <exclude>pom.xml</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

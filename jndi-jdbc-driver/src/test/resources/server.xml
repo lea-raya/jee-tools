@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!-- Note:  Stripped down for testing
+ -->
+<Server port="8005" shutdown="SHUTDOWN">
+
+  <Listener className="org.apache.catalina...." SSLEngine="on" />
+
+  <!-- Global JNDI resources
+       Documentation at /docs/jndi-resources-howto.html
+  -->
+  <GlobalNamingResources>
+    <!-- Editable user database that can also be used by
+         UserDatabaseRealm to authenticate users
+    -->
+    <Resource name="UserDatabase" auth="Container"
+              type="org.apache.catalina.UserDatabase"
+              description="User database that can be updated and saved"
+              factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+              pathname="conf/tomcat-users.xml" />
+    <Resource name="jdbc/testDB" auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="org.hsqldb.jdbc.JDBCDriver"
+              maxActive="100" maxIdle="30" maxWait="10000"
+              url="jdbc:hsqldb:mem:"
+              username="sa"
+              password=""
+              validationQuery=""/>
+  </GlobalNamingResources>
+
+  <Service name="Catalina">
+
+    <Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               URIEncoding="UTF-8"
+               redirectPort="8443" />
+
+    <Engine name="Catalina" defaultHost="localhost">
+
+      <Host name="localhost"  appBase="webapps"
+            unpackWARs="true" autoDeploy="true"
+            xmlValidation="false" xmlNamespaceAware="false">
+
+      </Host>
+    </Engine>
+  </Service>
+</Server>
